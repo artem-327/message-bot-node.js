@@ -1,4 +1,5 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import {
   createMsg,
   deleteMsg,
@@ -8,17 +9,19 @@ import {
   findDateToBirthday
 } from './model.js';
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get("/", function (req, res) {
   res.write("Hi!");
   res.end();
 });
 
-app.get("messages", function (req, res) {
+app.get("/messages", function (req, res) {
   res.json(getAllMsg());
 });
 
-app.get("getMessageById/:id", function (req, res) {
+app.get("/getMessageById/:id", function (req, res) {
   const id = req.params.id;
   const msg = findMsg(id);
   if (!msg) {
@@ -30,7 +33,7 @@ app.get("getMessageById/:id", function (req, res) {
   }
 });
 
-app.get("getDateToBirthday/:id", function (req, res) {
+app.get("/getDateToBirthday/:id", function (req, res) {
   const id = req.params.id;
   const dateLeft = findDateToBirthday(id);
   if (!dateLeft) {
@@ -42,11 +45,11 @@ app.get("getDateToBirthday/:id", function (req, res) {
   }
 });
 
-app.post("createMsg", function (req, res) {
+app.post("/createMsg", function (req, res) {
   res.json(createMsg());
 });
 
-app.patch("updateMsg/:id", function (req, res) {
+app.patch("/updateMsg/:id", function (req, res) {
   const id = req.params.id;
   const payload = req.body;
   const msg = updateMsg(id, payload);
@@ -59,7 +62,7 @@ app.patch("updateMsg/:id", function (req, res) {
   }
 });
 
-app.delete("deleteMsg/:id", function (req, res) {
+app.delete("/deleteMsg/:id", function (req, res) {
   const id = req.params.id;
   const msg = deleteMsg(id);
   if (!msg) {

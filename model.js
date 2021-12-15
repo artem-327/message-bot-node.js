@@ -20,23 +20,22 @@ export const createMsg = () => {
 };
 
 export const deleteMsg = (id) => {
-  const index = store.findIndex((msg) => msg.id === id);
+  const index = store.findIndex((msg) => msg.id == id);
   return index ? store.splice(index, 1) : null;
 };
 
 export const updateMsg = (id, details) => {
-  const em = store.find((msg) => msg.id === id);
-  if (!em.length) {
+  const em = store.find((msg) => msg.id == id);
+  if (!em) {
     return null;
   }
-  let updated = em[0]
-  updated.firstName = details.firstName ? details.firstName : updated.firstName;
-  updated.birthday = details.birthday ? details.birthday : updated.birthday;
-  return updated;
+  em.firstName = details.firstName ? details.firstName : em.firstName;
+  em.birthday = details.birthday ? details.birthday : em.birthday;
+  return em;
 };
 
 export const findMsg = (id) => {
-  const em = store.filter((msg) => msg.id === id);
+  const em = store.filter((msg) => msg.id == id);
   if (em.length) {
     return em[0];
   } else {
@@ -49,11 +48,11 @@ export const getAllMsg = () => {
 };
 
 export const findDateToBirthday = (id) => {
-  const em = store.find((msg) => msg.id === id);
-  if (!em.length) {
+  const em = store.find((msg) => msg.id == id);
+  if (!em) {
     return null;
   }
-  const birthday = em[0].birthday.split('-');
+  const birthday = em.birthday.split('-');
   const Bmonth = Number(birthday[1]) - 1;
   const Bday = Number(birthday[2]);
 
