@@ -1,0 +1,31 @@
+{
+  "name": "msg-bog",
+  "version": "1.0.0",
+  "description": "Express Backend for MSG Bot",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index",
+    "test": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artyomDev/msg-bot.git"
+  },
+  "keywords": [
+    "bot",
+    "message",
+    "express",
+    "node.js"
+  ],
+  "author": "artyomDev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artyomDev/msg-bot/issues"
+  },
+  "homepage": "https://github.com/artyomDev/msg-bot#readme",
+  "type": "module"
+}
